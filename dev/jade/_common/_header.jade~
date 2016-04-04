@@ -1,0 +1,16 @@
+header.header
+  .container
+    .header__top
+      nav.header__nav
+        ul.nav__list
+          li.nav__item
+            a.nav__link(href="javascript:void(0)") home
+          li.nav__item
+            a.nav__link(href="javascript:void(0)") about
+          li.nav__item
+            a.nav__link(href="javascript:void(0)") works
+          li.nav__item
+            a.nav__link(href="javascript:void(0)") contact
+    .header__main
+      h1.header__title Hello!123
+      p.header__subtitle Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora, totam.

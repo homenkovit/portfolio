@@ -44,6 +44,9 @@ a
   &:hover
     color: $accent-color
 
+section
+  height: 100vh
+
 .img
   display: block
   max-width: 100%
@@ -66,12 +69,23 @@ a
 .main
   flex: 1
 
+// Clearfix
+.clearfix:before, .clearfix:after 
+  content: " "
+  display: table
+
+.clearfix:after 
+  clear: both
+
+.clearfix 
+  *zoom: 1
 
 // -----------------------Custom Styles Here-----------------------
 
 //layout Start
 
 @import "./_sections/_header"
+@import "./_sections/_section__contacts"
 
 //layout End
 
