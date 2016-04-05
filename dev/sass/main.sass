@@ -12,6 +12,15 @@
 
 // -----------------------Basic styles-----------------------
 
+* 
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0; 
+
+html * 
+  box-sizing: border-box; 
+
 html, body
   height: 100%
 
@@ -19,6 +28,7 @@ body
   background: $body-color
   font: 14px/1.41 $content-font
   -webkit-font-smoothing: antialiased
+  transition: 0.3s ease
 
 table
   border-collapse: collapse
@@ -69,21 +79,11 @@ section
 .main
   flex: 1
 
-// Clearfix
-.clearfix:before, .clearfix:after 
-  content: " "
-  display: table
-
-.clearfix:after 
-  clear: both
-
-.clearfix 
-  *zoom: 1
-
 // -----------------------Custom Styles Here-----------------------
 
 //layout Start
-
+@import "./_sections/jquery.fileupload"
+@import "./_sections/jquery.fileupload-ui"
 @import "./_sections/_header"
 @import "./_sections/_section__contacts"
 

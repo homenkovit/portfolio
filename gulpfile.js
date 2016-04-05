@@ -90,7 +90,10 @@ gulp.task('concat-js', function () {
 /* -------- concat js plugins -------- */
 gulp.task('concat-js-plugins', function() {
   return gulp.src([
-    './dev/plugins/jquery/dist/jquery.min.js'
+    './dev/plugins/jquery/dist/jquery.min.js',
+    './dev/plugins/blueimp-file-upload/js/vendor/jquery.ui.widget.js',
+    './dev/plugins/blueimp-file-upload/js/jquery.iframe-transport.js',
+    './dev/plugins/blueimp-file-upload/js/jquery.fileupload.js'
     ])
     .pipe(plumber())
     .pipe(concat('plugins.min.js'))

@@ -1,19 +1,21 @@
 section.section__contacts
 	.container.container_contacts
-		form.contacts-form(id='contact_form' method='post' action='mail.php' enctype='multipart/form-data')
+		form.contacts-form(id='fileupload' method='post' action='mail.php' enctype='multipart/form-data')
 			h3.contacts-form__heading Contact us
 			ul.contacts-form__list
 				li.contacts-form__item.clearfix
 					label.contacts-form__label(for='customer-name') Your name
-					input.contacts-form__input(form='contact-form' type='text' name='customer-name' placeholder='name')
+					input.contacts-form__input(form='fileupload' type='text' id='customer-name' placeholder='name')
 				li.contacts-form__item.clearfix
 					label.contacts-form__label(for='customer-email') Your email
-					input.contacts-form__input(form='contact-form' type='email' name='customer-email' placeholder='example@mail.com')
+					input.contacts-form__input(form='fileupload' type='email' id='customer-email' placeholder='example@mail.com')
 				li.contacts-form__item.clearfix
 					label.contacts-form__label(for='project-description') Project description
-					textarea.contacts-form__input.contacts-form__input_textarea(form='contact-form' rows='10' name='project-description' placeholder='features of your project')
-				li.contacts-form__item.clearfix
-					label.contacts-form__label.file-upload(for='file-attachment') Attach a file
-						//- span.contacts-form__file-button file
-						//- mark no file chosen
-					input.contacts-form__input(form='contact-form' type='file' name='files[]' multiple='multiple')
+					textarea.contacts-form__input.contacts-form__input_textarea(form='fileupload' rows='10' id='project-description' placeholder='features of your project')
+				li.contacts-form__item
+					label.contacts-form__label.file-upload Attach a file
+					.contacts-form__file-input-container
+						input.contacts-form__input.contacts-form__input_file-input(form='fileupload' type='file' id='files[]' multiple='multiple')
+				li.contacts-form__item.contacts-form__buttons
+					button.contacts-form__button.contacts-form__button_send(form='fileupload') Send
+					button.contacts-form__button.contacts-form__button_clear(form='fileupload' type='reset') Clear
