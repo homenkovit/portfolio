@@ -17,27 +17,21 @@
 		margin-bottom: 20px
 		width: 100%
 	&__label
-		color: #888888
+		color: $placecolor
 		font-size: 16px
 		margin-bottom: 10px
 		display: block
 	&__input
 		width: 100%
 		height: 40px
-		border: 1px solid #e5e5e5
+		border: 1px solid $light-grey
 		padding: 10px 20px
 		transition: opacity 0.3s ease
 		@include placecolor($placecolor)
 		&:focus
-			outline-color: #2793C7
+			outline-color: $links-color
 		&_textarea
 			resize: none
-		&:placeholder
-			opacity: 1
-			@include transition(opacity 0.3s ease)
-		&:focus:placeholder
-			opacity: 0
-			@include transition(opacity 0.3s ease)
 	&__input_textarea
 		height: 90px
 	&__buttons
@@ -45,18 +39,31 @@
 	&__button
 		width: 120px
 		height: 40px
-		border: 1px solid #e5e5e5
+		border: 1px solid $light-grey
 		background-color: white
-		color: #888888
+		color: $placecolor
 		&:hover
 			color: black
-			border: 2px solid #2793C7
+			border: 2px solid $links-color
 		&:focus
 			color: black
-			border: 2px solid #2793C7
+			border: 2px solid $links-color
 		&_send
 			float: left
 			margin-left: 30px
 		&_clear
 			float: right
 			margin-right: 30px
+.fileinput-button
+	width: 100%
+	display: block
+	text-align: center
+	border: 1px solid $light-grey
+	line-height: 60px
+	font-size: 16px
+	color: $placecolor
+	margin-bottom: 60px
+	&:hover
+		border: 2px solid $links-color
+		color: black
+		line-height: 58px

@@ -1,23 +1,22 @@
 section.section__contacts
 	.container.container_contacts
-		form.contacts-form( method='post' action='mail.php' enctype='multipart/form-data')
+		form.contacts-form(id='contact-form' method='post' action='php/main.php' enctype='multipart/form-data')
 			h3.contacts-form__heading Contact us
 			ul.contacts-form__list
 				li.contacts-form__item
 					label.contacts-form__label(for='customer-name') Your name
-					input.contacts-form__input(form='fileupload' type='text' id='customer-name' placeholder='name')
+					input.contacts-form__input(form='contact-form' type='text' id='customer-name' placeholder='name' name='name')
 				li.contacts-form__item
 					label.contacts-form__label(for='customer-email') Your email
-					input.contacts-form__input(form='fileupload' type='email' id='customer-email' placeholder='example@mail.com')
+					input.contacts-form__input(form='contact-form' type='email' id='customer-email' placeholder='example@mail.com' name='email')
 				li.contacts-form__item
 					label.contacts-form__label(for='project-description') Project description
-					textarea.contacts-form__input.contacts-form__input_textarea(form='fileupload' rows='10' id='project-description' placeholder='features of your project')
+					textarea.contacts-form__input.contacts-form__input_textarea(form='contact-form' rows='10' id='project-description' placeholder='features of your project' name='description')
 				li.contacts-form__item
 					label.contacts-form__label.file-upload Attach a file
 					span.fileinput-button
-						i.glyphicon.glyphicon-plus
-						span add files...
-						input(id='fileupload' type='file' name='files[]' multiple)
+						span add files
+						input(form='contact-form' id='project-attachment' type='file' name='files[]' multiple)
 				li.contacts-form__item.contacts-form__buttons
-					button.contacts-form__button.contacts-form__button_send(form='fileupload') Send
-					button.contacts-form__button.contacts-form__button_clear(form='fileupload' type='reset') Clear
+					button.contacts-form__button.contacts-form__button_send(form='contact-form' type='submit') Send
+					button.contacts-form__button.contacts-form__button_clear(form='contact-form' type='reset') Clear

@@ -124,6 +124,12 @@ gulp.task('fonts', function () {
         .pipe(gulp.dest('prod/fonts/'));
 });
 
+/* -------- fonts -------- */
+gulp.task('php', function () {
+    return gulp.src('dev/php/**/*.*')
+        .pipe(gulp.dest('prod/php/'));
+});
+
 /* -------- clean prod/js -------- */
 gulp.task('clean', function() {
   return gulp.src('prod/**/*.*', { read: false })
@@ -158,6 +164,7 @@ gulp.task('watch', function () {
     'prod/css/*.css',
     'prod/js/*.js'
   ]).on('change', browserSync.reload);
+  gulp.watch('dev/php/**/*.*', ['php']);
 });
 
 gulp.task('default', [
@@ -169,6 +176,7 @@ gulp.task('default', [
   'favicon',
   'fonts',
   'server',
+  'php',
   'watch'
 ]);
 
