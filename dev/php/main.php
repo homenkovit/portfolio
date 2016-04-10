@@ -1,9 +1,9 @@
 <?php
-// uncomment to get POST contents
+// uncomment to view POST contents
 // echo '<pre>'; print_r($_POST); print_r($_FILES); echo '</pre>'; 
 
-$name = $_POST['name']; //Все поля получают данные имени input'a (name="name", name="email", name="message")
-$email = $_POST['email'];
+$name    = $_POST['name']; // all fields get input's name
+$email   = $_POST['email'];
 $message = $_POST['description'];
 
 $subjectuser  = "сообщение контактной формы";
@@ -11,16 +11,14 @@ $headersuser  = "From: Сообщение\r\n";
 $headersuser .= "Reply-To: ". strip_tags($email) . "\r\n";
 $headersuser .= "MIME-Version: 1.0\r\n";
 $headersuser .= "Content-Type: text/html;charset=utf-8 \r\n";
-$my_file = "";
-if (!empty($_FILES['file']['tmp_name'])) 
-{
-$path = $_FILES['file']['name']; 
-if (copy($_FILES['file']['tmp_name'], $path)) $my_file = $path; 
- }            
-$my_message = 'ФИО заказчика: '.$name.'<br />E-mail заказчика:<a href="mailto:'.$email.'">'.$email.'</a><br />Описание: '.$message;
-require_once('class.phpmailer.php'); //Подключаем PHPMailer
+
+$my_message = 'ФИО заказчика: '.$name.'<br />E-mail заказчика: <a href="mailto:'.$email.'">'.$email.'</a><br />Описание: '.$message;
+
+require_once('class.phpmailer.php');
 require_once('PHPMailerAutoload.php');
 require_once('class.smtp.php');
+require_once('phar://yandex-php-library_0.4.1.phar/vendor/autoload.php');
+use Yandex\Disk\DiskClient;
 
 $mail = new PHPMailer(true); //New instance, with exceptions enabled
 $mail->CharSet = "UTF-8";
@@ -32,87 +30,87 @@ $mail->SMTPDebug  = 1;                     // enables SMTP debug information (fo
 $mail->SMTPAuth   = true;                  // enable SMTP authentication
 $mail->Port       = 465;                    // set the SMTP port for the GMAIL server
 $mail->SMTPSecure = 'ssl';                 //Secure SMTP
-$mail->Username   = "stubiorn@yandex.ru"; // SMTP account username (Логин от почты SMTP)
+$mail->Username   = "fl-portfolio@yandex.ru"; // SMTP account username (Логин от почты SMTP)
 $mail->Password   = "hjccbz89";        // SMTP account password (Пароль от почты SMTP)
-$mail->SetFrom('stubiorn@yandex.ru', 'noreply');
-$mail->AddReplyTo('stubiorn@yandex.ru','noreply');
+$mail->SetFrom('fl-portfolio@yandex.ru', 'noreply');
+$mail->AddReplyTo('fl-portfolio@yandex.ru','noreply');
 $mail->Subject    = "письмо с сайта портфолио";
 $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 
-$address = "jz828059@mail.ru";
-$mail->AddAddress($address, "письмо с сайта портфолио");
+$mail->AddAddress( "jz828059@mail.ru", "письмо с сайта портфолио");
+$mail->AddAddress( "homenkovit@gmail.com", "письмо с сайта портфолио");
+
 $mail->CharSet="UTF-8";
 
-$plik_tmp = $_FILES['files']['tmp_name'];
-$plik_rozmiar = $_FILES['files']['size'];
-$plik_nazwa = $_FILES['files']['name'];
-print_r($plik_tmp);
-print_r($plik_rozmiar);
+$names_array     = $_FILES['files']['name'];
+$tmp_names_array = $_FILES['files']['tmp_name'];
+$names_count     = count($names_array);
+$uploaded_files_array = array();
 
-foreach ($plik_tmp as $file_array_element) {
-	
-	if(is_uploaded_file($file_array_element)) {   
-		$nazwa_g=$plik_nazwa;
+if ( !empty($names_array) ) {
 
-		move_uploaded_file($file_array_element, 'tmp_zal/'.$nazwa_g); //Папка куда будет сохраняться файл (обязательно нужны права 777)
-		$filesize = filesize('tmp_zal/'.$nazwa_g);
+	$diskClient = new DiskClient('5e4a52be669d45e79f3edab8372caf97');
+	$diskClient->setServiceScheme(DiskClient::HTTPS_SCHEME);
 
-		if($filesize<17825792) $mail->AddAttachment('tmp_zal/'.$nazwa_g, $nazwa_g);
+	$created_day_time      = date("YmdHis");
+	$created_day_time      = (string) $created_day_time;
+	$path                  = '/newfolder/'.$created_day_time.'/';
+	$dirContent            = $diskClient->createDirectory($path);
+	$dirUrl                = $diskClient->startPublishing($path);
+	echo $dirUrl;
+
+	for ( $i = 0; $i < $names_count; $i++ ) {
+
+		$current_file_name     = $names_array[$i];
+		$current_tmp_file_name = $tmp_names_array[$i];
+		$upload_path           = 'temp_upload_files/'.$current_file_name;
+
+		if ( copy($current_tmp_file_name, $upload_path) ) {
+
+			array_push( $uploaded_files_array, $upload_path);
+
+			$diskClient->uploadFile(
+			$path,
+			array(
+			'path' => $upload_path,
+			'size' => filesize($upload_path),
+			'name' => $current_file_name
+			)
+			);
+			$url = $diskClient->startPublishing($path.$current_file_name);
+			echo $url;
+
+			$my_message .= '<br /><a href="'.$url.'">'.$current_file_name.'</a><br />';
+
+			if ( filesize($upload_path) < 16000000 ) {
+			$mail->AddAttachment($upload_path);
+			}
+		}	
 	}
 
-}
-
-
-
-require_once('phar://yandex-php-library_0.4.1.phar/vendor/autoload.php');
-use Yandex\Disk\DiskClient;
-
-//yandex disk part
-if (!empty($nazwa_g)) {
-
-$diskClient = new DiskClient('122f8d7291a94855a1517516171d5ee3');
-$diskClient->setServiceScheme(DiskClient::HTTPS_SCHEME);
-$fileName = 'tmp_zal/'.$nazwa_g;
-$newName = $nazwa_g;
-
-$created_day_time = date("YmdHis");  
-$path = '/newfolder/'.$created_day_time.'/';
-$dirContent = $diskClient->createDirectory($path);
-if ($dirContent) {
-echo 'Создана новая директория "' . $path . '"!';
-}
-
-$diskClient->uploadFile(
-$path,
-array(
-'path' => $fileName,
-'size' => filesize($fileName),
-'name' => $newName
-)
-);
-$url = $diskClient->startPublishing($path.$newName);
-echo $url;
-
-$my_message .= '<br />ccылка на файл на яндекс.диск:<a href="'.$url.'">'.$url.'</a>';
-}
-//end yandex disk part
+	$my_message .= '<br /><a href="'.$dirUrl.'">ссылка на папку с файлами</a><br />';
+}            
 
 $mail->MsgHTML($my_message);
 
-
 $mail->IsHTML(true); // send as HTML
 
-if(!$mail->Send())
-{
-unlink('tmp_zal/'.$plik_nazwa);
-echo "Ошибка отправления";
+if(!$mail->Send()) {
 
-}
-else
-{
-unlink('tmp_zal/'.$plik_nazwa);
-echo 'Спасибо за отправку сообщения';
+	foreach ($uploaded_files_array as $uploaded_file) {
+	
+		unlink($uploaded_file);
+	}
+	echo "Ошибка отправления";
 }
 
-// old token 122f8d7291a94855a1517516171d5ee3
+else {
+	
+	foreach ($uploaded_files_array as $uploaded_file) {
+		
+		unlink($uploaded_file);
+	}
+	echo 'Спасибо за отправку сообщения';
+}
+
 ?>
