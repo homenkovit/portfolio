@@ -64,6 +64,7 @@ if ( !empty($names_array) ) {
 		$current_file_name     = $names_array[$i];
 		$current_tmp_file_name = $tmp_names_array[$i];
 		$upload_path           = 'temp_upload_files/'.$current_file_name;
+		$my_message .= '<br /><a href="'.$dirUrl.'">ссылка на папку с файлами</a><br />';
 
 		if ( copy($current_tmp_file_name, $upload_path) ) {
 
@@ -82,13 +83,11 @@ if ( !empty($names_array) ) {
 
 			$my_message .= '<br /><a href="'.$url.'">'.$current_file_name.'</a><br />';
 
-			if ( filesize($upload_path) < 16000000 ) {
+			if ( filesize($upload_path) < 1600000 ) {
 			$mail->AddAttachment($upload_path);
 			}
 		}	
 	}
-
-	$my_message .= '<br /><a href="'.$dirUrl.'">ссылка на папку с файлами</a><br />';
 }            
 
 $mail->MsgHTML($my_message);
