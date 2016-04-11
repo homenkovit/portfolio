@@ -1,6 +1,14 @@
 .works
   position: relative
   // transition: all 0.3s
+  &::before
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      bottom: 0
+      right: 0
+      background-color: rgba(#000000, 0.3)
   &-container, &__previews
     height: 100vh
   &-close-button
@@ -38,26 +46,9 @@
     &_work-1
       background: url('../images/img-1.jpg') 0 0 no-repeat
       // background-size: cover
-      &::before
-        content: ''
-        position: absolute
-        top: 0
-        left: 0
-        bottom: 0
-        right: 0
-        background-color: rgba(#000000, 0.5)
-        width: 25%
     &_work-2  
       background: url('../images/img-2.jpg') calc(100%/3) 0 no-repeat
       // background-size: cover
-      &::before
-        content: ''
-        position: absolute
-        top: 0
-        left: 0
-        bottom: 0
-        right: 0
-        background-color: rgba(yellow, 0.5)
         width: 25%
     &_work-3  
       background: url('../images/img-3.jpg') calc(200%/3) 0 no-repeat
