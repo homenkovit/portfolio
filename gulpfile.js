@@ -44,10 +44,10 @@ var paths = {
 /* -------- gulp server  -------- */
 gulp.task('server', function () {
   browserSync.init({
-    // server: {
-    //   baseDir: ["dev", "prod"]
-    // },
-    proxy: "localhost:8888",
+    server: {
+      baseDir: ["dev", "prod"]
+    },
+    // proxy: "localhost:8888",
     notify: false
   });
 });
