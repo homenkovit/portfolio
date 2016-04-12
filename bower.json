@@ -12,6 +12,7 @@
   ],
   "dependencies": {
     "normalize.sass": "^3.0.0",
-    "blueimp-file-upload": "jquery-file-upload#^9.12.1"
+    "blueimp-file-upload": "jquery-file-upload#^9.12.1",
+    "onepage-scroll": "^1.3.1"
   }
 }

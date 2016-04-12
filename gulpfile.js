@@ -95,7 +95,8 @@ gulp.task('concat-js-plugins', function() {
     './dev/plugins/jquery/dist/jquery.min.js',
     './dev/plugins/blueimp-file-upload/js/vendor/jquery.ui.widget.js',
     './dev/plugins/blueimp-file-upload/js/jquery.iframe-transport.js',
-    './dev/plugins/blueimp-file-upload/js/jquery.fileupload.js'
+    './dev/plugins/blueimp-file-upload/js/jquery.fileupload.js',
+    './dev/plugins/onepage-scroll/jquery.onepage-scroll.min.js'
     ])
     .pipe(plumber())
     .pipe(concat('plugins.min.js'))
@@ -116,30 +117,30 @@ gulp.task('concat-js-plugins-head', function() {
 
 /* -------- images -------- */
 gulp.task('images', function () {
-    return gulp.src('dev/images/*.+(png|jpg|jpeg|gif|svg)')
-        .pipe(imagemin({
-            progressive: true,
-            interlaced: true
-        }))
-        .pipe(gulp.dest('prod/images/'));
+  return gulp.src('dev/images/*.+(png|jpg|jpeg|gif|svg)')
+    .pipe(imagemin({
+        progressive: true,
+        interlaced: true
+    }))
+    .pipe(gulp.dest('prod/images/'));
 });
 
 /* -------- favicon -------- */
 gulp.task('favicon', function () {
-    return gulp.src('dev/images/favicon/*.+(ico|png|json|svg|xml)')
-        .pipe(gulp.dest('prod/images/favicon/'));
+  return gulp.src('dev/images/favicon/*.+(ico|png|json|svg|xml)')
+    .pipe(gulp.dest('prod/images/favicon/'));
 });
 
 /* -------- fonts -------- */
 gulp.task('fonts', function () {
-    return gulp.src('dev/fonts/**/*.+(eot|svg|ttf|woff|woff2)')
-        .pipe(gulp.dest('prod/fonts/'));
+  return gulp.src('dev/fonts/**/*.+(eot|svg|ttf|woff|woff2)')
+    .pipe(gulp.dest('prod/fonts/'));
 });
 
 /* -------- fonts -------- */
 gulp.task('php', function () {
-    return gulp.src('dev/php/**/*.*')
-        .pipe(gulp.dest('prod/php/'));
+  return gulp.src('dev/php/**/*.*')
+    .pipe(gulp.dest('prod/php/'));
 });
 
 /* -------- clean prod/js -------- */
