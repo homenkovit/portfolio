@@ -18,6 +18,7 @@ var gulp         = require('gulp'),
     clean        = require('gulp-rimraf'),
     imagemin     = require('gulp-imagemin'),
     plumber      = require('gulp-plumber'),
+    modulizr     = require('modulizr-gulp'),
     notify       = require('gulp-notify');
 
 /* --------- paths --------- */
@@ -103,6 +104,16 @@ gulp.task('concat-js-plugins', function() {
     .pipe(browserSync.stream());
 });
 
+/* -------- concat js plugins (head) -------- */
+gulp.task('concat-js-plugins-head', function() {
+  return gulp.src('./dev/js/modernizr-custom.js')
+    .pipe(plumber())
+    .pipe(concat('plugins-head.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest(paths.js.destination))
+    .pipe(browserSync.stream());
+});
+
 /* -------- images -------- */
 gulp.task('images', function () {
     return gulp.src('dev/images/*.+(png|jpg|jpeg|gif|svg)')
@@ -173,6 +184,7 @@ gulp.task('default', [
   'sass-compile',
   'concat-js',
   'concat-js-plugins',
+  'concat-js-plugins-head',
   'images',
   'favicon',
   'fonts',
