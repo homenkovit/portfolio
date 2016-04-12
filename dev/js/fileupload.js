@@ -27,15 +27,16 @@ var list_uploaded_files = function() {
 	var inputField = $('#project-attachment');
 
 	var _setUplisteners = inputField.change(function() {
-
+			$(".filelist-container").empty();
 			var inputFiles = inputField.prop("files");
-
 			var chosenFilesNames = $.map( inputFiles, function(val) { return val.name; } );
-
 			console.log(chosenFilesNames);
+
+			chosenFilesNames.forEach(function(filename){
+	
+				$('.filelist-container').append('<p>'+filename+'</p>');
+
+			});
 		});
 }();
-
-
-
 }); //jQuery wrapper document ready function
