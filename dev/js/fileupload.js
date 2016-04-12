@@ -24,18 +24,16 @@ $('#fileupload').fileupload({
 
 var list_uploaded_files = function() {
 
-		var inputField = $('#project-attachment');
+	var inputField = $('#project-attachment');
 
-		var _setUplisteners = $(inputField).change(displayList),
+	var _setUplisteners = inputField.change(function() {
 
-			displayList = function() {
+			var inputFiles = inputField.prop("files");
 
-				var inputFiles = inputField.prop("files");
+			var chosenFilesNames = $.map( inputFiles, function(val) { return val.name; } );
 
-				var chosenFilesNames = $.map( files, function(val) { return val.name; } );
-
-				console.log(chosenFilesNames);
-			};
+			console.log(chosenFilesNames);
+		});
 }();
 
 
