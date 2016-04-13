@@ -22,21 +22,37 @@ $('#fileupload').fileupload({
  //            .call(this, null, {result: result});
  //    });
 
-var list_uploaded_files = function() {
+var ListUploadedFiles = (function() {
 
-	var inputField = $('#project-attachment');
-
-	var _setUplisteners = inputField.change(function() {
-			$(".filelist-container").empty();
-			var inputFiles = inputField.prop("files");
-			var chosenFilesNames = $.map( inputFiles, function(val) { return val.name; } );
-			console.log(chosenFilesNames);
-
-			chosenFilesNames.forEach(function(filename){
+	var _setUplisteners = $('#project-attachment').change(_displayList),
 	
-				$('.filelist-container').append('<p>'+filename+'</p>');
+		_displayList = function() {
 
-			});
-		});
-}();
+			$(".filelist-container").empty();
+
+			var inputFiles = $('#project-attachment').prop("files"),
+
+				chosenFilesArray = $.map( inputFiles, function(val) { return val.name; } ),
+				
+				_displayFileName = function(filename){
+
+					$('.filelist-container').append('<p>'+filename+'</p>');
+
+				},
+
+		console.log(chosenFilesArray);
+
+		chosenFilesArray.forEach(_displayFileName);
+		};
+
+	return {
+        init: _setUpListeners
+    }
+
+})();
+
+if ($.find('#project-attachment').length > 0) {
+        ListUploadedFiles.init();
+    }
+
 }); //jQuery wrapper document ready function
