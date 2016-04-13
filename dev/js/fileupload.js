@@ -50,10 +50,25 @@ var ListUploadedFiles = (function() {
 	}
 })();
 
-$('.contacts-form__button_clear').click($('.filelist-container').empty());
+var clearForm = (function() {
+
+	var _setUplisteners = function(){
+
+		$('.contacts-form__button_clear').click(_clearForm);
+	},
+	_clearForm = function(){
+
+		$('#fileupload').trigger('reset');
+		$('.filelist-container').empty();
+	}
+	return {
+		init: _setUplisteners
+	}
+})();
 
 if ($.find('#project-attachment').length > 0) {
         ListUploadedFiles.init();
     }
+clearForm.init();
 
 }); //jQuery wrapper document ready function

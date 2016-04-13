@@ -82,7 +82,9 @@ gulp.task('concat-js', function () {
     .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(sourcemaps.init())
     .pipe(concat('main.min.js'))
-    .pipe(uglify())
+    .pipe(uglify({
+      mangle: false
+    }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(paths.js.destination))
     .pipe(browserSync.stream());
