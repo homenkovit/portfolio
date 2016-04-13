@@ -1,6 +1,5 @@
 .works
   position: relative
-  // transition: all 0.3s
   &::before
       content: ''
       position: absolute
@@ -9,6 +8,8 @@
       bottom: 0
       right: 0
       background-color: rgba(#000000, 0.3)
+  &-container
+    padding-top: 50px
   &-container, &__previews
     height: 100vh
   &-close-button
@@ -40,7 +41,7 @@
   &__list
     display: inline-block
     cursor: pointer
-    height: 100vh
+    height: 100%
     width: 25%
     transition: all 0.3s
     &_work-1
