@@ -24,31 +24,32 @@ $('#fileupload').fileupload({
 
 var ListUploadedFiles = (function() {
 
-	var _setUplisteners = $('#project-attachment').change(_displayList),
+	var _setUplisteners = function() {
+
+			$('#project-attachment').change(_displayList);
+		},
 	
 		_displayList = function() {
 
-			$(".filelist-container").empty();
+			$('.filelist-container').empty();
 
 			var inputFiles = $('#project-attachment').prop("files"),
 
-				chosenFilesArray = $.map( inputFiles, function(val) { return val.name; } ),
-				
+				chosenFilesArray = $.map( inputFiles, function(val) { return val.name } ),
+
 				_displayFileName = function(filename){
 
 					$('.filelist-container').append('<p>'+filename+'</p>');
-
-				},
+				};
 
 		console.log(chosenFilesArray);
 
 		chosenFilesArray.forEach(_displayFileName);
-		};
+		}
 
 	return {
-        init: _setUpListeners
-    }
-
+		init: _setUplisteners
+	}
 })();
 
 if ($.find('#project-attachment').length > 0) {
