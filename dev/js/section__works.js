@@ -2,6 +2,7 @@ jQuery(document).ready(function($) {
   
   $('.works__list').click(function() {
     $(this).addClass('works__list_selected');
+    $('.nav').css('opacity', '0');
     $('.works-close-button').addClass('works-close-button_selected');
     $(this).find('.works__link').addClass('works__link_selected');
     $(this).find('.works__title').hide();
@@ -9,6 +10,7 @@ jQuery(document).ready(function($) {
   
   $('.works-close-button').click(function(e) {
     e.preventDefault();
+    $('.nav').css('opacity', '1');
     $(this).removeClass('works-close-button_selected');
     $('.works__previews').find('.works__list_selected').removeClass('works__list_selected');
     $('.works__previews').find('.works__link_selected').removeClass('works__link_selected');

@@ -96,8 +96,8 @@ gulp.task('concat-js-plugins', function() {
     './dev/plugins/jquery/dist/jquery.min.js',
     './dev/plugins/blueimp-file-upload/js/vendor/jquery.ui.widget.js',
     './dev/plugins/blueimp-file-upload/js/jquery.iframe-transport.js',
-    './dev/plugins/blueimp-file-upload/js/jquery.fileupload.js',
-    './dev/plugins/onepage-scroll/jquery.onepage-scroll.min.js'
+    './dev/plugins/blueimp-file-upload/js/jquery.fileupload.js'
+    // './dev/plugins/onepage-scroll/jquery.onepage-scroll.min.js'
     ])
     .pipe(plumber())
     .pipe(concat('plugins.min.js'))
