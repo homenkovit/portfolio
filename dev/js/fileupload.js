@@ -42,15 +42,15 @@ var ListUploadedFiles = (function() {
 					$('.filelist-container').append('<p>'+filename+'</p>');
 				};
 
-		console.log(chosenFilesArray);
-
 		chosenFilesArray.forEach(_displayFileName);
-		}
+		};
 
 	return {
 		init: _setUplisteners
 	}
 })();
+
+$('.contacts-form__button_clear').click($('.filelist-container').empty());
 
 if ($.find('#project-attachment').length > 0) {
         ListUploadedFiles.init();
