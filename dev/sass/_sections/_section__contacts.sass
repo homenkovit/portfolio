@@ -18,6 +18,7 @@
 	&__item
 		margin-bottom: 20px
 		width: 100%
+		position: relative
 	&__label
 		color: $placecolor
 		font-size: 16px
@@ -53,9 +54,13 @@
 		&_send
 			float: left
 			margin-left: 30px
+			&:focus
+				outline: none
 		&_clear
 			float: right
 			margin-right: 30px
+			&:focus
+				outline: none
 .fileinput-button
 	width: 100%
 	display: block
@@ -72,3 +77,19 @@
 	position: absolute
 	left: 420px
 	top: 365px
+.controlred
+	border: 1px solid #F97E76
+	cursor: auto
+	background-color: #fad2d1
+	&:focus
+		outline: #F97E76
+.display
+	&_block
+		display: block !important
+	&_none
+		display: none
+.email-message
+	&_invalid,&_empty
+		display: none
+#successblock,#errorblock
+	display: none

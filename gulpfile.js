@@ -18,6 +18,7 @@ var gulp         = require('gulp'),
     clean        = require('gulp-rimraf'),
     imagemin     = require('gulp-imagemin'),
     plumber      = require('gulp-plumber'),
+    jshint = require('gulp-jshint'),
     notify       = require('gulp-notify');
 
 /* --------- paths --------- */
@@ -94,9 +95,10 @@ gulp.task('concat-js', function () {
 gulp.task('concat-js-plugins', function() {
   return gulp.src([
     './dev/plugins/jquery/dist/jquery.min.js',
-    './dev/plugins/blueimp-file-upload/js/vendor/jquery.ui.widget.js',
     './dev/plugins/blueimp-file-upload/js/jquery.iframe-transport.js',
-    './dev/plugins/blueimp-file-upload/js/jquery.fileupload.js'
+    './dev/plugins/blueimp-file-upload/js/vendor/jquery.ui.widget.js',
+    './dev/plugins/blueimp-file-upload/js/jquery.fileupload.js',
+    './dev/plugins/blueimp-file-upload/js/jquery.fileupload-validate.js'
     // './dev/plugins/onepage-scroll/jquery.onepage-scroll.min.js'
     ])
     .pipe(plumber())
@@ -150,6 +152,13 @@ gulp.task('clean', function() {
     .pipe(clean());
 });
 
+/* -------- js linter -------- */
+gulp.task('lint', function() {
+  return gulp.src('./dev/js/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'));
+});
+
 /* -------- auto sprites  -------- */
 gulp.task('sprite', function () {
   var spriteData = gulp.src('dev/images/sprites/*.png')
@@ -192,8 +201,11 @@ gulp.task('default', [
   'fonts',
   'server',
   'php',
-  'watch'
+  'watch',
+  'lint'
 ]);
+
+
 
 // ===================== Functions ======================
 

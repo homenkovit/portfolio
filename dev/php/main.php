@@ -38,7 +38,7 @@ $mail->Subject    = "письмо с сайта портфолио";
 $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 
 $mail->AddAddress( "jz828059@mail.ru", "письмо с сайта портфолио");
-$mail->AddAddress( "homenkovit@gmail.com", "письмо с сайта портфолио");
+// $mail->AddAddress( "homenkovit@gmail.com", "письмо с сайта портфолио");
 
 $mail->CharSet="UTF-8";
 
@@ -57,14 +57,14 @@ if ( !empty($names_array) ) {
 	$path                  = '/newfolder/'.$created_day_time.'/';
 	$dirContent            = $diskClient->createDirectory($path);
 	$dirUrl                = $diskClient->startPublishing($path);
-	echo $dirUrl;
+	$my_message .= '<br /><a href="'.$dirUrl.'">ссылка на папку с файлами</a><br />';
 
 	for ( $i = 0; $i < $names_count; $i++ ) {
 
 		$current_file_name     = $names_array[$i];
 		$current_tmp_file_name = $tmp_names_array[$i];
 		$upload_path           = 'temp_upload_files/'.$current_file_name;
-		$my_message .= '<br /><a href="'.$dirUrl.'">ссылка на папку с файлами</a><br />';
+		
 
 		if ( copy($current_tmp_file_name, $upload_path) ) {
 

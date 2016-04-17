@@ -18,6 +18,9 @@
     "gulp.spritesmith": "^6.2.0"
   },
   "dependencies": {
+    "gulp-jshint": "^2.0.0",
+    "jshint": "^2.9.1",
+    "jshint-stylish": "^2.1.0",
     "modulizr-gulp": "0.0.2"
   },
   "repository": {
