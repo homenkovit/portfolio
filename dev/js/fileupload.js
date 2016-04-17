@@ -76,19 +76,19 @@ var Validation = (function() {
             var email = $('#customer-email'),
                 valid = true;
                     
-                if (email.length != '') {
+                if (email.val() === '') {
                     email.addClass('controlred');
                     $('.email-message_empty').addClass('display_block');
                     valid = false;
                 } else {
                 	var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
-					if(pattern.test($(email).val())){
+					if(pattern.test(email.val())){
 						$('.email-message_empty').removeClass('display_block');
-					    $(email).removeClass('controlred');
+					    email.removeClass('controlred');
 					    valid = true;
 					} else {
 			           $('.email-message_invalid').addClass('display_block');
-					   $(email).addClass('controlred');
+					   email.addClass('controlred');
 					   valid = false;
 			        }
                 }
@@ -106,6 +106,7 @@ var Validation = (function() {
             $('#customer-email').removeClass('controlred');
             $('.filelist-container').empty();
             $('.email-message_invalid').removeClass('display_block');
+            $('.email-message_empty').removeClass('display_block');
         };
 
     return {
@@ -130,7 +131,7 @@ var orderform_validation = (function() {
 			event.preventDefault();
 
             $('#errorblock').addClass('display_none');
-            $('#successblock').css('display', 'none');
+            $('#successblock').addClass('display_none');
 			
 			var valid = Validation.validateForm($('#contact-form')),
 				orderform = $('#contact-form'),

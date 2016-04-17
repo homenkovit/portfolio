@@ -1,8 +1,6 @@
 $(document).ready(function(){
 
-var fullblock = $('#fullpage');
-
-fullblock.fullpage({
+$('#fullpage').fullpage({
 //Navigation
 menu: '#menu',
 anchors: ['home', 'works', 'contacts'],

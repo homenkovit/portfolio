@@ -93,11 +93,10 @@ gulp.task('concat-js', function () {
 gulp.task('concat-js-plugins', function() {
   return gulp.src([
     './dev/plugins/jquery/dist/jquery.min.js',
-    './dev/plugins/blueimp-file-upload/js/jquery.iframe-transport.js',
+    // './dev/plugins/blueimp-file-upload/js/jquery.iframe-transport.js',
     './dev/plugins/blueimp-file-upload/js/vendor/jquery.ui.widget.js',
     './dev/plugins/blueimp-file-upload/js/jquery.fileupload.js',
-    './dev/plugins/blueimp-file-upload/js/jquery.fileupload-validate.js',
-    // './dev/plugins/onepage-scroll/jquery.onepage-scroll.min.js',
+    // './dev/plugins/blueimp-file-upload/js/jquery.fileupload-validate.js',
     './dev/plugins/fullpage.js/jquery.fullPage.min.js'
     ])
     .pipe(plumber())
