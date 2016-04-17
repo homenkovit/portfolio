@@ -187,6 +187,7 @@ gulp.task('watch', function () {
     'prod/js/*.js'
   ]).on('change', browserSync.reload);
   gulp.watch('dev/php/**/*.*', ['php']);
+  gulp.watch('dev/js/**/*.js', ['lint']);
 });
 
 gulp.task('default', [

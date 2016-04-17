@@ -25,7 +25,7 @@ var ListUploadedFiles = (function() {
 
 			var inputFiles = $('#project-attachment').prop("files"),
 
-				chosenFilesArray = $.map( inputFiles, function(val) { return val.name } ),
+				chosenFilesArray = $.map( inputFiles, function(val) { return val.name; } ),
 
 				_displayFileName = function(filename){
 
@@ -37,7 +37,7 @@ var ListUploadedFiles = (function() {
 
 	return {
 		init: _setUplisteners
-	}
+	};
 })();
 
 
@@ -106,12 +106,12 @@ var Validation = (function() {
             $('#customer-email').removeClass('controlred');
             form.trigger('reset');
             $('.filelist-container').empty();
-        }
+        };
 
     return {
         init: _setUpListeners,
         validateForm: _validateForm
-    }
+    };
 
 })();
 // end form validation script
@@ -136,7 +136,7 @@ var orderform_validation = (function() {
 				orderform = $('#contact-form'),
 				handler_url = 'php/main.php';
 
-			if (valid == true) {
+			if (valid === true) {
 
 				var formData = new FormData($('#contact-form'));  
 
@@ -179,11 +179,11 @@ var orderform_validation = (function() {
                 $('#contact-form').Validation._clearForm();
 
 			}
-		}
+		};
      
     return {
         init: _setUpListeners
-    }
+    };
 
 })();
 // end validate order form
