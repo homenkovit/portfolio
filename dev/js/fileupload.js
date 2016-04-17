@@ -76,7 +76,7 @@ var Validation = (function() {
             var email = $('#customer-email'),
                 valid = true;
                     
-                if (email.length < 1) {
+                if (email.length != '') {
                     email.addClass('controlred');
                     $('.email-message_empty').addClass('display_block');
                     valid = false;
@@ -104,8 +104,8 @@ var Validation = (function() {
 
         _clearForm = function(form) {
             $('#customer-email').removeClass('controlred');
-            form.trigger('reset');
             $('.filelist-container').empty();
+            $('.email-message_invalid').removeClass('display_block');
         };
 
     return {
@@ -194,5 +194,7 @@ if ($.find('form').length > 0) {
 if ($.find('#contact-form').length > 0) {
     orderform_validation.init();
 }
+
+ListUploadedFiles.init();
 
 }); //jQuery wrapper document ready function

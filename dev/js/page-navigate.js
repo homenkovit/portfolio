@@ -1,14 +1,16 @@
 $(document).ready(function(){
 
-  $('#fullpage').fullpage({
-    //Navigation
-    menu: '#menu',
-    anchors: ['home', 'works', 'contacts'],
-    navigation: true,
-    navigationTooltips: ['home', 'works', 'contacts'],
+var fullblock = $('#fullpage');
 
-    //Scrolling
-    scrollingSpeed: 500
-  });
+fullblock.fullpage({
+//Navigation
+menu: '#menu',
+anchors: ['home', 'works', 'contacts'],
+navigation: true,
+navigationTooltips: ['home', 'works', 'contacts'],
+
+//Scrolling
+scrollingSpeed: 500
+});
 
 });
