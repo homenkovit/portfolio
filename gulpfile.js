@@ -83,9 +83,7 @@ gulp.task('concat-js', function () {
     .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
     .pipe(sourcemaps.init())
     .pipe(concat('main.min.js'))
-    .pipe(uglify({
-      mangle: false
-    }))
+    .pipe(uglify())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(paths.js.destination))
     .pipe(browserSync.stream());
@@ -98,8 +96,9 @@ gulp.task('concat-js-plugins', function() {
     './dev/plugins/blueimp-file-upload/js/jquery.iframe-transport.js',
     './dev/plugins/blueimp-file-upload/js/vendor/jquery.ui.widget.js',
     './dev/plugins/blueimp-file-upload/js/jquery.fileupload.js',
-    './dev/plugins/blueimp-file-upload/js/jquery.fileupload-validate.js'
-    // './dev/plugins/onepage-scroll/jquery.onepage-scroll.min.js'
+    './dev/plugins/blueimp-file-upload/js/jquery.fileupload-validate.js',
+    // './dev/plugins/onepage-scroll/jquery.onepage-scroll.min.js',
+    './dev/plugins/fullpage.js/jquery.fullPage.min.js'
     ])
     .pipe(plumber())
     .pipe(concat('plugins.min.js'))
