@@ -109,7 +109,7 @@ var Validation = (function() {
             $('.email-message_empty').fadeOut();
             $('#errorblock').fadeOut();
             $('#successblock').fadeOut();
-            form[0].trigger('reset');
+            form.reset();
         };
 
     return {
