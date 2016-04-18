@@ -165,11 +165,11 @@ var orderform_validation = (function() {
 							var data = xhr.responseText;
 							// uncomment to get request report data
 							if(data == "true") {
-								$('#errorblock').addClass('display_none');
+								$('#successblock').addClass('display_block');
 								console.log(data);
 
 							} else {
-								$('#successblock').addClass('display_none');
+								$('#errorblock').addClass('display_block');
                                 console.log(data);
 							}
 						}
