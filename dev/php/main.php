@@ -46,8 +46,15 @@ $names_array     = $_FILES['files']['name'];
 $tmp_names_array = $_FILES['files']['tmp_name'];
 $names_count     = count($names_array);
 $uploaded_files_array = array();
+$empty = true;
 
-if ( !empty($names_array) ) {
+foreach ($tmp_names_array as $value) {
+	if ( !empty($value) ) {
+		$empty = false;
+	}
+}
+
+if ( !$empty ) {
 
 	$diskClient = new DiskClient('5e4a52be669d45e79f3edab8372caf97');
 	$diskClient->setServiceScheme(DiskClient::HTTPS_SCHEME);
