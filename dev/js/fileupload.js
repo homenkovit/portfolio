@@ -78,16 +78,16 @@ var Validation = (function() {
                     
                 if (email.val() === '') {
                     email.addClass('controlred');
-                    $('.email-message_empty').addClass('display_block');
+                    $('.email-message_empty').fadeIn();
                     valid = false;
                 } else {
                 	var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/i;
 					if(pattern.test(email.val())){
-						$('.email-message_empty').removeClass('display_block');
+						$('.email-message_empty').fadeOut();
 					    email.removeClass('controlred');
 					    valid = true;
 					} else {
-			           $('.email-message_invalid').addClass('display_block');
+			           $('.email-message_invalid').fadeIn();
 					   email.addClass('controlred');
 					   valid = false;
 			        }
@@ -98,24 +98,32 @@ var Validation = (function() {
 
         _removeError = function() {
             $(this).removeClass('controlred');
-            $('.email-message_empty').removeClass('display_block');
-            $('.email-message_invalid').removeClass('display_block');
+            $('.email-message_empty').fadeOut();
+            $('.email-message_invalid').fadeOut();
         },
 
         _clearForm = function(form) {
             $('#customer-email').removeClass('controlred');
             $('.filelist-container').empty();
-            $('.email-message_invalid').removeClass('display_block');
-            $('.email-message_empty').removeClass('display_block');
+            $('.email-message_invalid').fadeOut();
+            $('.email-message_empty').fadeOut();
+            $('#errorblock').fadeOut();
+            $('#successblock').fadeOut();
+            form[0].trigger('reset');
         };
 
     return {
         init: _setUpListeners,
-        validateForm: _validateForm
+        validateForm: _validateForm,
+        clearForm: _clearForm
     };
 
 })();
 // end form validation script
+if ($.find('form').length > 0) {
+        Validation.init();
+    }
+
 
 // validate order form
 var orderform_validation = (function() {
@@ -130,8 +138,8 @@ var orderform_validation = (function() {
 
 			event.preventDefault();
 
-            $('#errorblock').addClass('display_none');
-            $('#successblock').addClass('display_none');
+            $('#errorblock').fadeOut();
+            $('#successblock').fadeOut();
 			
 			var valid = Validation.validateForm($('#contact-form')),
 				orderform = $('#contact-form'),
@@ -165,11 +173,11 @@ var orderform_validation = (function() {
 							var data = xhr.responseText;
 							// uncomment to get request report data
 							if(data == "true") {
-								$('#successblock').addClass('display_block');
+								$('#successblock').fadeIn();
 								console.log(data);
 
 							} else {
-								$('#errorblock').addClass('display_block');
+								$('#errorblock').fadeIn();
                                 console.log(data);
 							}
 						}
@@ -177,7 +185,7 @@ var orderform_validation = (function() {
 				};
 				
 				xhr.send(formData);
-                $('#contact-form').Validation._clearForm();
+                Validation.clearForm($('#contact-form'));
 
 			}
 		};
@@ -189,9 +197,7 @@ var orderform_validation = (function() {
 })();
 // end validate order form
 
-if ($.find('form').length > 0) {
-        Validation.init();
-    }
+
 if ($.find('#contact-form').length > 0) {
     orderform_validation.init();
 }
