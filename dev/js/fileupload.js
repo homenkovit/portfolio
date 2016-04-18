@@ -4,11 +4,11 @@
 jQuery(document).ready(function($){
 
 // sending form
-var url = 'php/main.php';
+// var url = 'php/main.php';
 
 $('#fileupload').fileupload({
-        url: url,
-        dataType: 'json'
+        // url: url,
+        // dataType: 'json'
     });
 
 // display chosen files list
@@ -109,7 +109,7 @@ var Validation = (function() {
             $('.email-message_empty').fadeOut();
             $('#errorblock').fadeOut();
             $('#successblock').fadeOut();
-            form.reset();
+            $('#contact-form')[0].reset();
         };
 
     return {
@@ -147,7 +147,7 @@ var orderform_validation = (function() {
 
 			if (valid === true) {
 
-				var formData = new FormData($('#contact-form'));  
+				var formData = new FormData($('#contact-form')[0]);  
 
 				var xhr = new XMLHttpRequest();
 				xhr.open("POST", handler_url);
