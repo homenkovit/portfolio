@@ -1,3 +1,5 @@
+;
+"use strict";
 $(document).ready(function(){
 
 var windowWidth  = document.body.clientWidth,
@@ -27,14 +29,19 @@ if ( windowWidth>1000 && windowHeight>620) {
 
 var SwitchFullpagePlugin = (function(){
 
-	var _setUpListeners = function (){
+	var _setUpListeners = function() {
 
 		window.onresize = _runFullpage;
 	},
 
+	_reloadPage = function() {
+
+		location.reload(true);
+	},
+
 	_runFullpage = function(){
 
-		setTimeout(500, location.reload());
+		setTimeout( _reloadPage, 500 );
 
 		if ( windowWidth>1000 && windowHeight>620) {
 		
