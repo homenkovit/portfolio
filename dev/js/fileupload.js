@@ -173,11 +173,11 @@ var orderform_validation = (function() {
 							var data = xhr.responseText;
 							// uncomment to get request report data
 							if(data == "true") {
-								$('#successblock').fadeIn();
+								setTimeout(200, $('#errorblock').fadeIn());
 								console.log(data);
 
 							} else {
-								$('#errorblock').fadeIn();
+								setTimeout(200, $('#successblock').fadeIn());
                                 console.log(data);
 							}
 						}
