@@ -57,21 +57,21 @@ var SwitchFullpagePlugin = (function(){
 
 SwitchFullpagePlugin.init();
 
-$(window).scroll(function getPageScroll() {
+// $(window).scroll(function getPageScroll() {
 
-        var xScroll;
+//         var xScroll;
 
-        if (self.pageXOffset) { 
-                xScroll = self.pageXOffset;
-        } else if (document.documentElement && document.documentElement.scrollLeft) {
-                xScroll = document.documentElement.scrollLeft;
-        } else if (document.body) {
-                xScroll = document.body.scrollLeft;
-        }
+//         if (self.pageXOffset) { 
+//                 xScroll = self.pageXOffset;
+//         } else if (document.documentElement && document.documentElement.scrollLeft) {
+//                 xScroll = document.documentElement.scrollLeft;
+//         } else if (document.body) {
+//                 xScroll = document.body.scrollLeft;
+//         }
 
-        var topmenu = $('.nav__list');
-        topmenu.css('right', xScroll + "px");
-        return xScroll    
-});
+//         var topmenu = $('.nav__list');
+//         topmenu.css('right', xScroll + "px");
+//         return xScroll    
+// });
 
 });
