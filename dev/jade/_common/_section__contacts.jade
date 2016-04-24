@@ -1,28 +1,28 @@
 section.section.section__contacts(data-section="contacts")
-	.container.container_contacts
-		form.contacts-form(id='contact-form' method='post' action='php/main.php' enctype='multipart/form-data')
-			h3.contacts-form__heading Contact us
-			ul.contacts-form__list
-				li.contacts-form__item
-					label.contacts-form__label(for='customer-name') Your name
-					input.contacts-form__input(form='contact-form' type='text' id='customer-name' placeholder='name' name='name')
-				li.contacts-form__item
-					label.contacts-form__label.label_required(for='customer-email') Your email
-					input.contacts-form__input(form='contact-form' type='email' id='customer-email' placeholder='example@mail.com' name='email')
-					.email-message_invalid invalid email
-					.email-message_empty please, enter your email
-				li.contacts-form__item
-					label.contacts-form__label(for='project-description') Project description
-					textarea.contacts-form__input.contacts-form__input_textarea(form='contact-form' rows='10' id='project-description' placeholder='features of your project' name='description')
-				li.contacts-form__item
-					label.contacts-form__label.file-upload Attach a file
-					span.fileinput-button
-						span add files
-						input(form='contact-form' id='project-attachment' type='file' name='files[]' multiple)
-				li.contacts-form__item.filelist-container
-				li.contacts-form__item.contacts-form__buttons
-					button.contacts-form__button.contacts-form__button_send(id='submitbutton' form='contact-form' type='submit') Send
-					button.contacts-form__button.contacts-form__button_clear(form='contact-form' type='reset') Clear
-				li.contacts-form__item(id="successblock") message has been sent
-				li.contacts-form__item(id="errorblock") an error occurred, please try again
+  .container_contacts
+    form.contacts-form(id='contact-form' method='post' action='php/main.php' enctype='multipart/form-data')
+      h3.contacts-form__heading Contact us
+      ul.contacts-form__list
+        li.contacts-form__item
+          label.contacts-form__label(for='customer-name') Your name
+          input.contacts-form__input(form='contact-form' type='text' id='customer-name' placeholder='name' name='name')
+        li.contacts-form__item
+          label.contacts-form__label.label_required(for='customer-email') Your email
+          input.contacts-form__input(form='contact-form' type='email' id='customer-email' placeholder='example@mail.com' name='email')
+          .email-message_invalid invalid email
+          .email-message_empty please, enter your email
+        li.contacts-form__item
+          label.contacts-form__label(for='project-description') Project description
+          textarea.contacts-form__input.contacts-form__input_textarea(form='contact-form' rows='10' id='project-description' placeholder='features of your project' name='description')
+        li.contacts-form__item
+          label.contacts-form__label.file-upload Attach a file
+          span.fileinput-button
+            span add files
+            input(form='contact-form' id='project-attachment' type='file' name='files[]' multiple)
+        li.contacts-form__item.filelist-container
+        li.contacts-form__item.contacts-form__buttons
+          button.contacts-form__button.contacts-form__button_send(id='submitbutton' form='contact-form' type='submit') Send
+          button.contacts-form__button.contacts-form__button_clear(form='contact-form' type='reset') Clear
+        li.contacts-form__item(id="successblock") message has been sent
+        li.contacts-form__item(id="errorblock") an error occurred, please try again
 
