@@ -65,27 +65,6 @@ var SwitchFullpagePlugin = (function(){
 
 SwitchFullpagePlugin.init();
 
-// $(window).scroll(function getPageScroll() {
-
-//         var xScroll;
-
-//         if (self.pageXOffset) { 
-//                 xScroll = self.pageXOffset;
-//         } else if (document.documentElement && document.documentElement.scrollLeft) {
-//                 xScroll = document.documentElement.scrollLeft;
-//         } else if (document.body) {
-//                 xScroll = document.body.scrollLeft;
-//         }
-
-//         var topmenu = $('.nav__list');
-//         topmenu.css('right', xScroll + "px");
-//         return xScroll    
-// });
-
-  
-
-});
-
 $(window).scroll(function() {
   checkSection();
 });
@@ -119,3 +98,5 @@ function checkSection() {
     }
   });
 };
+
+}); // "document.ready wrapper function"

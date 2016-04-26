@@ -37,8 +37,8 @@ $mail->AddReplyTo('fl-portfolio@yandex.ru','noreply');
 $mail->Subject    = "письмо с сайта портфолио";
 $mail->AltBody    = "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test
 
-$mail->AddAddress( "jz828059@mail.ru", "письмо с сайта портфолио");
-// $mail->AddAddress( "homenkovit@gmail.com", "письмо с сайта портфолио");
+$mail->AddAddress( "jz828059@yandex.ru", "письмо с сайта портфолио");
+$mail->AddAddress( "homenkovit@gmail.com", "письмо с сайта портфолио");
 
 $mail->CharSet="UTF-8";
 

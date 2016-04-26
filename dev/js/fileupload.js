@@ -40,30 +40,6 @@ var ListUploadedFiles = (function() {
 	};
 })();
 
-
-// clear form with clear button
-// var clearForm = (function() {
-
-// 	var _setUplisteners = function(){
-
-// 		$('.contacts-form__button_clear').click(_clearForm);
-// 	},
-// 	_clearForm = function(){
-
-// 		$('#fileupload').trigger('reset');
-// 		$('.filelist-container').empty();
-// 	}
-// 	return {
-// 		init: _setUplisteners
-// 	}
-// })();
-
-// if ($.find('#project-attachment').length > 0) {
-//         ListUploadedFiles.init();
-//     }
-// clearForm.init();
-
-// form validation script
 var Validation = (function() {
 
     var _setUpListeners = function() {
@@ -109,6 +85,7 @@ var Validation = (function() {
             $('.email-message_empty').fadeOut();
             $('#errorblock').fadeOut();
             $('#successblock').fadeOut();
+            $('#loading').fadeOut();
             $('#contact-form')[0].reset();
         };
 
@@ -152,19 +129,18 @@ var orderform_validation = (function() {
 				var xhr = new XMLHttpRequest();
 				xhr.open("POST", handler_url);
 
-                // file upload progressbar
-                // var progressBar = $('#progressbar');
-                
-                // xhr.upload.addEventListener('progress', function(evt){ // добавляем обработчик события progress (onprogress)
-                //     if(evt.lengthComputable) { // если известно количество байт
-                //         // высчитываем процент загруженного
-                //         var percentComplete = Math.ceil(evt.loaded / evt.total * 100);
-                //         // устанавливаем значение в атрибут value тега <progress>
-                //         // и это же значение альтернативным текстом для браузеров, не поддерживающих <progress>
-                //         progressBar.val(percentComplete).text('Загружено ' + percentComplete + '%');
-                //     }
-                // }, false);
-                // end file upload progressbar
+
+				var loadingBlock = $('#loading');
+
+				 xhr.upload.addEventListener('progress', function(evt){ // добавляем обработчик события progress (onprogress)
+                    if(evt.lengthComputable) { // если известно количество байт
+                        // высчитываем процент загруженного
+                        var percentComplete = Math.ceil(evt.loaded / evt.total * 100);
+                        // устанавливаем значение в атрибут value тега <progress>
+                        // и это же значение альтернативным текстом для браузеров, не поддерживающих <progress>
+                        loadingBlock.val(percentComplete).text(percentComplete + '%' + ' uploaded');
+                    }
+                }, false);
 
 				xhr.onreadystatechange = function() {
 
@@ -172,20 +148,36 @@ var orderform_validation = (function() {
 						if(xhr.status == 200) {
 							var data = xhr.responseText;
 							// uncomment to get request report data
-							if(data == "true") {
-								setTimeout(200, $('#errorblock').fadeIn());
-								console.log(data);
 
+							var _reportSuccess = function() {
+
+								$('#successblock').fadeIn();
+							},
+							_reportError = function() {
+
+								$('#loading').fadeOut();
+								$('#errorblock').fadeIn();
+							};
+
+
+							if(data == "true") {
+
+								$('#loading').fadeOut();
+								setTimeout(200, _reportError());
+								// console.log(data);
 							} else {
-								setTimeout(200, $('#successblock').fadeIn());
-                                console.log(data);
+								
+								Validation.clearForm($('#contact-form')[0]);
+								setTimeout(200, _reportSuccess());
+								// console.log(data);	
 							}
+                               
 						}
 					}
 				};
 				
 				xhr.send(formData);
-                Validation.clearForm($('#contact-form'));
+                loadingBlock.fadeIn();
 
 			}
 		};
